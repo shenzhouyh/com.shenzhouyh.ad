@@ -7,14 +7,20 @@ eureka:
   client:
     service-url:
       defaultZone: http://server1:8000/eureka/
-
+# 从网关统一的向微服务进行转发路径配置
 zuul:
-  prefix: /imooc
+  prefix: /imooc # 访问路径的前缀
   routes:
     sponsor:
+      # 路径中包含ad-sponsor即为命中
       path: /ad-sponsor/**
+      # 微服务的ID
       serviceId: eureka-client-ad-sponsor
+      # 跳过前缀（不跳过）
       strip-prefix: false
+      # 127.0.0.1:9000/imooc/ad-sponsor/create/adPlan
+      # 如果strip-prefix设为true，则转发的地址为/create/adPlan.
+      # 而ad-sponsor项目的访问路径名前缀就是ad-sponsor，所以会报404
     search:
       path: /ad-search/**
       serviceId: eureka-client-ad-search
