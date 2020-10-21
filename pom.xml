@@ -12,6 +12,7 @@
         <module>ad-eureka</module>
         <module>ad-gateway</module>
         <module>shenzhouyh-ad-service</module>
+        <module>ad-search</module>
     </modules>
 
     <name>shenzhouyh-ad</name>
